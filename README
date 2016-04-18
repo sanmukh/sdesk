@@ -3,3 +3,4 @@ This bash script polls the rss feed for a few nasa websites which post images of
 TODO List:
 1. Add a few more urls
 2. Add a mechanism to make stopping the processes easy. How to distinguish root from children??
+3. Generalize the url and image dir.
