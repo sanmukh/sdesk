@@ -1,0 +1,2 @@
+http://www.nasa.gov/rss/dyn/lg_image_of_the_day.rss
+http://www.nasa.gov/rss/dyn/chandra_images.rss
