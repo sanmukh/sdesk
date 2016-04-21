@@ -5,22 +5,25 @@ checkrss() {
 
 last=""
 link=$1
+imgdir=$2
 fname=`basename $link`
+ffullname=${imgdir}/$fname
 
 while [[ 0 -eq 0 ]]
 do
 	# get the rss
-	rm -rf $fname
-	wget $link 2> /dev/null
-	now="$(cat $fname | grep pubDate | head -1)"
+	rm -rf $ffullname
+	wget -P $imgdir $link 2> /dev/null
+	now="$(cat $ffullname | grep pubDate | head -1)"
 
 	if [[ "$last" != "$now" ]]
 	then
-		last="$(cat $fname | grep pubDate | head -1)"
-		enclosurename=`cat $fname | grep enclosure | head -1`
+		last="$(cat $ffullname | grep pubDate | head -1)"
+		enclosurename=`cat $ffullname | grep enclosure | head -1`
 		imageurl=`echo $enclosurename | awk -F\" '{print $2}'`
 		echo $imageurl
 	fi
+	echo "dummy"
     sleep 1m
 done
 
@@ -46,8 +49,11 @@ manage() {
 		do
 		#	echo $fd
 			read -u $fd -r filename 
-	#		echo $filename
-			download_and_set $IMGDIR $filename
+			echo $filename
+			if [[ $filename != "dummy" ]]
+			then
+				download_and_set $IMGDIR $filename
+			fi
 		done
 		sleep 1m
 	done
