@@ -34,6 +34,7 @@ download_and_set()
 	imagedir=$1
 	imageurl=$2
 	imagename=`basename $imageurl | awk '{split($1,a,"?"); print a[1]}'`
+	rm -rf ${imagedir}/$imagename
 	imageurl=`echo $imageurl | awk '{split($1,a,"?"); print a[1]}'`
 	wget -P $imagedir $imageurl 2> /dev/null
 	echo $imageurl
@@ -64,6 +65,7 @@ RSSFILE="/home/sanmukh/bin/sd/url.txt"
 IMGDIR="/home/sanmukh/bin/sd/img/"
 fds=( )
 
+init () {
 mkdir -p $IMGDIR
 
 for line in `cat $RSSFILE`
@@ -72,6 +74,9 @@ do
 	fds+=( $fd )
 done
 
+}
+
+init
 manage
 
 
