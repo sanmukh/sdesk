@@ -8,6 +8,9 @@ link=$1
 imgdir=$2
 fname=`basename $link`
 ffullname=${imgdir}/$fname
+#echo -n "Blah "
+#echo -n $imgdir
+#echo "Blah end"
 
 while [[ 0 -eq 0 ]]
 do
