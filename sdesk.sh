@@ -64,9 +64,17 @@ manage() {
 
 }
 
-RSSFILE="/home/sanmukh/bin/sd/url.txt"
-IMGDIR="/home/sanmukh/bin/sd/img/"
+URLFILE="./url.txt"
+RSSFILE="$HOME/.sd/url.txt"
+IMGDIR="$HOME/.sd/"
 fds=( )
+
+setup () {
+	rm -rf $IMGDIR
+	mkdir -p $IMGDIR
+	cp $URLFILE $IMGDIR
+}
+
 
 init () {
 mkdir -p $IMGDIR
@@ -79,7 +87,29 @@ done
 
 }
 
+clean () {
+	rm -rf $IMGDIR
+}
+
+while getopts ":sca" opt ; 
+do
+	case "$opt" in
+		s)
+			setup
+			exit
+		;;
+		c)
+			clean
+			exit
+		;;
+		*)
+			;;
+	esac
+done
+
+
 init
 manage
+
 
 
