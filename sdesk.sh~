@@ -91,7 +91,7 @@ clean () {
 	rm -rf $IMGDIR
 }
 
-while getopts ":sc" opt ; 
+while getopts ":sca" opt ; 
 do
 	case "$opt" in
 		s)
