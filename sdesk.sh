@@ -37,7 +37,10 @@ download_and_set()
 	imagedir=$1
 	imageurl=$2
 	imagename=`basename $imageurl | awk '{split($1,a,"?"); print a[1]}'`
-	rm -rf ${imagedir}/$imagename
+	if [[ ${imagedir}/$imagename ]]
+	then
+		rm -rf ${imagedir}/$imagename
+	fi
 	imageurl=`echo $imageurl | awk '{split($1,a,"?"); print a[1]}'`
 	wget -P $imagedir $imageurl 2> /dev/null
 	echo $imageurl
